@@ -33,6 +33,24 @@ app.get("/api/health", (req, res) => {
 });
 
 
+// ---------------------------------------------------------
+// MARKET SCAN
+// ---------------------------------------------------------
+
+app.get("/api/scan", async (req, res) => {
+  try {
+    const market = await getMarketFast();
+
+    res.json(market);
+
+  } catch (error) {
+    res.status(502).json({
+      error: error.message
+    });
+  }
+});
+
+
 // ===============================
 // AI CHART ANALYSIS
 // ===============================
